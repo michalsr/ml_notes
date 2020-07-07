@@ -29,3 +29,24 @@ Test Loss - training loss $\leq \sqrt{\frac{N}{m}}$ where $N$ is the effective c
 
 From the figure we see that in general deep neural networks are able to generalize relatively well. For it was believed that the performance of deep neural networks did not necessarily mean high capacity and that a combination of stochastic gradient descent and regularization eliminates the excess capacity of a neural network. However, this was proved wrong in a paper from 2017 ( \url{https://arxiv.org/abs/1611.03530}). The experimental findings of the paper include that a classic convolutional neural net, like Alexnet, could be trained with random labels and still achieve high accuracy on training data. The paper proved that 'there exists a two-layer neural network with RELu activations and $2n+d$ weights that can represent any function on a sample size $n$ in $d$ dimensions. Recent work has shown that excess capacity can also exist in Kernel methods.
 
+\section{Other notions of Generalizability}
+There are some other correlations of good generalizability with flat minima and noise stability implying compressibility. The idea of flat minima is an old one but noise stability is relatively new. The idea of noise stability starts with measuring capacity using Gaussian noise. What happens is that zero-mean Gaussian noise is added at an intermediate output of a neural network which is reduced in higher layers. The capacity of the network to fit this random noise can be measured. If a network has the capacity for the noise then it is considered to have noise stability. Noise stability implies compressibility, which is defined as 'given a network $C$ with $N$ parameters and some training loss, compression means obtaining a new network C that has fewer parameters and the training loss effectively remains the same which would mean that the new network would have better generalization capability. There is a more formal definition of noise capacity involving the distribution of singular values when noise is added to a neural-network.
+
+\section{Bounding Capacity}
+\paragraph{PAC-Bayes}
+The PAC-Bayes theorem informally bounds expected error of a classifier chosen from a distribution Q in terms of KL-Divergence from a priori fixed distribution P. KL-Divergence is a metric that compares the similarity between probability distributions:
+\[
+KL(p || q) = \mathbb{E}(log p(x) - log q(x)) = \sum_{i=1}^{N} p(x_i)(log p(x_i) - log q(x_i))
+\]
+PAC-Bayes relates to the following bound:
+\[
+KL(\hat{e}(Q,S_m) || e(q)) \leq \frac{KL (Q || P) + log \frac{m}{\delta}}{m-1}
+\]
+where $\hat{e}(Q,S_m)$ is the empirical loss of Q with respect to some i.i.d sample $S_m$ and $e(Q)$ is the expected loss. PAC-Bayes bounds the test error of a binary variant of MNIST in 16-22\% where the actual bound is around 3\%.
+
+\paragraph{Compressibility}
+Arora et al introduced boundaries using compressions where the loss is bounded by q parameters having at most r discrete values. 
+\section{Depth of Neural Networks}
+The proofs for these are relatively involved but it can be shown that 'radial functions can be approximated by depth-3 networks but not with depth-2 networks and that functions expressible by $\theta(k^3)$-depth networks of constant width cannot be approximated by $O(k)$-depth networks with polynomial width. Recent work might also suggest that increasing depth can speed up optimization.
+
+
